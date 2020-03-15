@@ -41,15 +41,21 @@ class LinkedList {
             this.append(value);
             return this.printList();
         }
-        let currentNode = this.head;
-        for (let i = 1; i < index; i++) {
-            currentNode = currentNode.next;
-        }
         const newNode = new Node(value);
-        newNode.next = currentNode.next;
-        currentNode.next = newNode;
+        const leader = this.traverseToIndex(index-1);
+        newNode.next = leader.next;
+        leader.next = newNode;
         this.length += 1;
         return this.printList();
+    }
+    traverseToIndex(index) {
+        let counter = 0;
+        let currentNode = this.head;
+        while(counter != index) {
+            currentNode = currentNode.next;
+            counter++;
+        }
+        return currentNode;
     }
 }
 
