@@ -85,12 +85,12 @@ class DoublyLinkedList {
             return this.printList();
         }
         const leader = this.traverseToIndex(index - 1);
-        const follower = leader.next;
+        const unwantedNode = leader.next;
         if (index === this.length - 1) {
             this.tail = this.leader;
         }
-        leader.next = follower.next;
-        follower.next.prev = leader;
+        leader.next = unwantedNode.next;
+        unwantedNode.next.prev = leader;
         this.length -= 1;
         return this.printList();
     }
